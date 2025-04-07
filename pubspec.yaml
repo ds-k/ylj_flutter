@@ -23,8 +23,10 @@ flutter:
   uses-material-design: true
 
   assets:
+    - .env
     - assets/images/
     - assets/icons/
+    - assets/icons/bn_icons/
 
   fonts:
     - family: Pretendard

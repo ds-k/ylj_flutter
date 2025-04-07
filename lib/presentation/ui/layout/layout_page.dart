@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ylj_flutter/constant/colors.dart';
+import 'package:ylj_flutter/presentation/ui/profile/profile_page.dart';
 import '../home/home_page.dart';
 
 class LayoutPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class _LayoutPageState extends State<LayoutPage> {
 
   final List<Widget> _pages = const [
     HomePage(),
+    ProfilePage(),
     // 여기에 다른 페이지 추가
   ];
 
@@ -54,29 +56,9 @@ class _LayoutPageState extends State<LayoutPage> {
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                'assets/icons/bn_icons/shop.svg',
-                colorFilter: ColorFilter.mode(
-                  _selectedIndex == 1 ? AppColors.black : AppColors.darkGray,
-                  BlendMode.srcIn,
-                ),
-              ),
-              label: '쇼핑',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/icons/bn_icons/chat.svg',
-                colorFilter: ColorFilter.mode(
-                  _selectedIndex == 2 ? AppColors.black : AppColors.darkGray,
-                  BlendMode.srcIn,
-                ),
-              ),
-              label: '채팅',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
                 'assets/icons/bn_icons/profile.svg',
                 colorFilter: ColorFilter.mode(
-                  _selectedIndex == 3 ? AppColors.black : AppColors.darkGray,
+                  _selectedIndex == 1 ? AppColors.black : AppColors.darkGray,
                   BlendMode.srcIn,
                 ),
               ),

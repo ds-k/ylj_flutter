@@ -4,6 +4,7 @@ import 'package:ylj_flutter/presentation/ui/layout/layout_page.dart';
 import 'constant/colors.dart';
 
 void main() {
+  print(const String.fromEnvironment('ENV_SAMPLE'));
   runApp(const ProviderScope(child: MyApp()));
 }
 
