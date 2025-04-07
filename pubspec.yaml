@@ -1,5 +1,5 @@
 name: ylj_flutter
-description: "열린 집 프로젝트"
+description: "ylj flutter project"
 publish_to: "none"
 
 version: 1.0.0+1
@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  flutter_riverpod: ^2.6.1
+  flutter_svg: ^2.0.17
 
 dev_dependencies:
   flutter_test:
