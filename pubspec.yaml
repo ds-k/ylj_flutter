@@ -27,6 +27,8 @@ flutter:
   assets:
     - .env
     - assets/images/
+    - assets/images/splash/
+    - assets/images/login/
     - assets/icons/
     - assets/icons/bn_icons/
 
