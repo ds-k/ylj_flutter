@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:ylj_flutter/constant/colors.dart';
 
 class LoginBottomSheet extends StatelessWidget {
   const LoginBottomSheet({super.key});
@@ -6,6 +8,7 @@ class LoginBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: AppColors.white,
       padding: const EdgeInsets.all(20),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -22,8 +25,10 @@ class LoginBottomSheet extends StatelessWidget {
             onPressed: () {
               // TODO: 구글 로그인 구현
             },
-            icon:
-                Image.asset('assets/images/login/google_logo.png', height: 24),
+            icon: SvgPicture.asset(
+              'assets/images/login/google_logo.svg',
+              height: 24,
+            ),
             label: const Text('Google로 계속하기'),
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 50),
@@ -37,7 +42,10 @@ class LoginBottomSheet extends StatelessWidget {
             onPressed: () {
               // TODO: 애플 로그인 구현
             },
-            icon: const Icon(Icons.apple),
+            icon: SvgPicture.asset(
+              'assets/images/login/apple_logo.svg',
+              height: 24,
+            ),
             label: const Text('Apple로 계속하기'),
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 50),
