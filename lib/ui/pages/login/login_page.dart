@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ylj_flutter/constant/colors.dart';
-import 'package:ylj_flutter/presentation/ui/login/widget/login_bottom_sheet.dart';
+import 'package:ylj_flutter/ui/pages/login/widget/login_bottom_sheet.dart';
 
 class CarouselItem {
   final String imagePath;
   final String description;
+  final String title;
 
   CarouselItem({
     required this.imagePath,
     required this.description,
+    required this.title,
   });
 }
 
@@ -27,14 +29,17 @@ class _LoginPageState extends State<LoginPage> {
   final List<CarouselItem> _carouselItems = [
     CarouselItem(
       imagePath: 'assets/images/login/carousel_1.png',
+      title: '열린집',
       description: '열린집은 이사시 발생하는 물건을\n일괄 판매할 수 있는 플랫폼입니다',
     ),
     CarouselItem(
       imagePath: 'assets/images/login/carousel_2.png',
+      title: '열린집',
       description: '열린집은 이사시 발생하는 물건을\n일괄 판매할 수 있는 플랫폼입니다',
     ),
     CarouselItem(
       imagePath: 'assets/images/login/carousel_3.png',
+      title: '열린집',
       description: '열린집은 이사시 발생하는 물건을\n일괄 판매할 수 있는 플랫폼입니다',
     ),
   ];
@@ -78,10 +83,18 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 40),
                         Text(
-                          item.description,
+                          item.title,
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          item.description,
+                          style: const TextStyle(
+                            fontSize: 16,
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -105,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                     borderRadius:
                         BorderRadius.circular(_currentPage == index ? 4 : 100),
                     color: _currentPage == index
-                        ? AppColors.green
+                        ? AppColors.mainGreen
                         : AppColors.lightGray,
                   ),
                 ),
@@ -121,7 +134,13 @@ class _LoginPageState extends State<LoginPage> {
                   foregroundColor: AppColors.white,
                   minimumSize: const Size(double.infinity, 50),
                 ),
-                child: const Text('간편로그인으로 시작하기'),
+                child: const Text(
+                  '간편로그인으로 시작하기',
+                  style: TextStyle(
+                    fontSize: 16,
+                    // fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ],
