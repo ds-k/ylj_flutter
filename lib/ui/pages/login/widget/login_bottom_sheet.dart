@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ylj_flutter/constant/colors.dart';
+import 'privacy_policy_page.dart';
 
 class LoginBottomSheet extends StatelessWidget {
   const LoginBottomSheet({super.key});
@@ -57,9 +58,9 @@ class LoginBottomSheet extends StatelessWidget {
             label: const Text('구글로 로그인하기'),
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 50),
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.black,
-              side: const BorderSide(color: AppColors.normalGray),
+              backgroundColor: AppColors.white,
+              foregroundColor: AppColors.black,
+              side: const BorderSide(color: AppColors.googleGray),
               elevation: 0,
             ),
           ),
@@ -75,8 +76,8 @@ class LoginBottomSheet extends StatelessWidget {
             label: const Text('애플로 로그인하기'),
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 50),
-              backgroundColor: Colors.black,
-              foregroundColor: Colors.white,
+              backgroundColor: AppColors.appleBlack,
+              foregroundColor: AppColors.white,
               elevation: 0,
             ),
           ),
@@ -91,13 +92,15 @@ class LoginBottomSheet extends StatelessWidget {
                   fontSize: 12,
                 ),
               ),
-              TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                  minimumSize: Size.zero,
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PrivacyPolicyPage(),
+                    ),
+                  );
+                },
                 child: const Text(
                   "이용약관/개인정보 처리방침",
                   style: TextStyle(

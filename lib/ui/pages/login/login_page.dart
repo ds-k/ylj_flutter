@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ylj_flutter/constant/colors.dart';
+import 'package:ylj_flutter/ui/pages/layout/layout_page.dart';
 import 'package:ylj_flutter/ui/pages/login/widget/login_bottom_sheet.dart';
 
 class CarouselItem {
@@ -52,6 +53,12 @@ class _LoginPageState extends State<LoginPage> {
       ),
       builder: (context) => const LoginBottomSheet(),
     );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -145,15 +152,29 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LayoutPage(),
+                  ),
+                  (route) => false,
+                );
+              },
+              child: const Text(
+                '열린집 둘러보기',
+                style: TextStyle(
+                  fontSize: 12,
+                  decoration: TextDecoration.underline,
+                  decorationColor: AppColors.darkGray,
+                  color: AppColors.darkGray,
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
   }
 }

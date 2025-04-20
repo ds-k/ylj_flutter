@@ -20,4 +20,6 @@ abstract class AppColors {
   static const Color subOrange = Color(0xFFFFEFE5);
   static const Color mainPink = Color(0xFFFE80B9);
   static const Color subPink = Color(0xFFFFE5F1);
+  static const Color googleGray = Color(0xFFDADCE0);
+  static const Color appleBlack = Color(0xFF000000);
 }
