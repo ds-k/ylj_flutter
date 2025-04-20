@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   final List<CarouselItem> _carouselItems = [
     CarouselItem(
       imagePath: 'assets/images/login/carousel_1.png',
-      title: '열린집',
+      title: '내 주변 열린집을\n지도에서 한번에 조회',
       description: '열린집은 이사시 발생하는 물건을\n일괄 판매할 수 있는 플랫폼입니다',
     ),
     CarouselItem(
@@ -79,21 +79,23 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(height: 60),
                         Image.asset(
                           item.imagePath,
-                          height: 250,
+                          height: 200,
                         ),
-                        const SizedBox(height: 40),
+                        const SizedBox(height: 20),
                         Text(
                           item.title,
                           style: const TextStyle(
+                            color: AppColors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 4),
                         Text(
                           item.description,
                           style: const TextStyle(
+                            color: AppColors.darkGray,
                             fontSize: 16,
                           ),
                           textAlign: TextAlign.center,
@@ -135,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                   minimumSize: const Size(double.infinity, 50),
                 ),
                 child: const Text(
-                  '간편로그인으로 시작하기',
+                  '로그인하기',
                   style: TextStyle(
                     fontSize: 16,
                     // fontWeight: FontWeight.bold,

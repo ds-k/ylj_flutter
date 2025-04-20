@@ -8,19 +8,44 @@ class LoginBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.white,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      decoration: const BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Center(
+            child: Container(
+              width: 86,
+              height: 4,
+              margin: const EdgeInsets.only(bottom: 40),
+              decoration: BoxDecoration(
+                color: AppColors.black,
+                borderRadius: BorderRadius.circular(100),
+              ),
+            ),
+          ),
           const Text(
-            '로그인',
+            '로그인 후 열린집을 이용해 보세요.',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 20),
+          const Text(
+            '소셜로그인을 통해 간편하게 이용하실 수 있습니다.',
+            style: TextStyle(
+              fontSize: 14,
+              color: AppColors.darkGray,
+            ),
+          ),
+          const SizedBox(height: 30),
           ElevatedButton.icon(
             onPressed: () {
               // TODO: 구글 로그인 구현
@@ -29,12 +54,13 @@ class LoginBottomSheet extends StatelessWidget {
               'assets/images/login/google_logo.svg',
               height: 24,
             ),
-            label: const Text('Google로 계속하기'),
+            label: const Text('구글로 로그인하기'),
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 50),
               backgroundColor: Colors.white,
               foregroundColor: Colors.black,
-              side: const BorderSide(color: Colors.grey),
+              side: const BorderSide(color: AppColors.normalGray),
+              elevation: 0,
             ),
           ),
           const SizedBox(height: 10),
@@ -46,13 +72,52 @@ class LoginBottomSheet extends StatelessWidget {
               'assets/images/login/apple_logo.svg',
               height: 24,
             ),
-            label: const Text('Apple로 계속하기'),
+            label: const Text('애플로 로그인하기'),
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(double.infinity, 50),
               backgroundColor: Colors.black,
               foregroundColor: Colors.white,
+              elevation: 0,
             ),
           ),
+          const SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "계속 진행하면 ",
+                style: TextStyle(
+                  color: AppColors.darkGray,
+                  fontSize: 12,
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  minimumSize: Size.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                child: const Text(
+                  "이용약관/개인정보 처리방침",
+                  style: TextStyle(
+                    color: AppColors.mainGreen,
+                    fontSize: 12,
+                    decoration: TextDecoration.underline,
+                    decorationColor: AppColors.mainGreen,
+                  ),
+                ),
+              ),
+              Text(
+                "이 적용됩니다.",
+                style: TextStyle(
+                  color: AppColors.darkGray,
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 30),
         ],
       ),
     );
