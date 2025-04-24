@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ylj_flutter/constant/colors.dart';
 import 'privacy_policy_page.dart';
 
-class LoginBottomSheet extends StatelessWidget {
+class LoginBottomSheet extends StatefulWidget {
   const LoginBottomSheet({super.key});
 
   @override
+  State<LoginBottomSheet> createState() => _LoginBottomSheetState();
+}
+
+class _LoginBottomSheetState extends State<LoginBottomSheet> {
+  GoogleSignInAccount? googleAccount;
+
+  Future<void> signInWithGoogle(BuildContext context) async {
+    GoogleSignIn googleSignIn = GoogleSignIn();
+    GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+    print(googleUser);
+    setState(() {
+      googleAccount = googleUser;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(googleAccount);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: const BoxDecoration(
@@ -49,7 +67,7 @@ class LoginBottomSheet extends StatelessWidget {
           const SizedBox(height: 30),
           ElevatedButton.icon(
             onPressed: () {
-              // TODO: 구글 로그인 구현
+              signInWithGoogle(context);
             },
             icon: SvgPicture.asset(
               'assets/images/login/google_logo.svg',
