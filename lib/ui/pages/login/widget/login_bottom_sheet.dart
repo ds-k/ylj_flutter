@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:ylj_flutter/constant/colors.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../ui/viewmodels/auth_viewmodel.dart';
+import '../../../../constant/colors.dart';
 import 'privacy_policy_page.dart';
 
-class LoginBottomSheet extends StatefulWidget {
+class LoginBottomSheet extends ConsumerWidget {
   const LoginBottomSheet({super.key});
 
-  @override
-  State<LoginBottomSheet> createState() => _LoginBottomSheetState();
-}
-
-class _LoginBottomSheetState extends State<LoginBottomSheet> {
-  GoogleSignInAccount? googleAccount;
-
-  Future<void> signInWithGoogle(BuildContext context) async {
-    GoogleSignIn googleSignIn = GoogleSignIn();
-    GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-    print(googleUser);
-    setState(() {
-      googleAccount = googleUser;
-    });
+  String getErrorMessage(dynamic error) {
+    if (error.toString().contains('network_error')) {
+      return '네트워크 연결을 확인해주세요.';
+    }
+    if (error.toString().contains('sign_in_failed')) {
+      return 'Google Play Services를 확인해주세요.';
+    }
+    return '로그인에 실패했습니다. 다시 시도해주세요.';
   }
 
   @override
-  Widget build(BuildContext context) {
-    print(googleAccount);
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: const BoxDecoration(
@@ -66,8 +60,24 @@ class _LoginBottomSheetState extends State<LoginBottomSheet> {
           ),
           const SizedBox(height: 30),
           ElevatedButton.icon(
-            onPressed: () {
-              signInWithGoogle(context);
+            onPressed: () async {
+              try {
+                await ref
+                    .read(authViewModelProvider.notifier)
+                    .signInWithGoogle();
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
+              } catch (error) {
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(getErrorMessage(error)),
+                      duration: const Duration(seconds: 3),
+                    ),
+                  );
+                }
+              }
             },
             icon: SvgPicture.asset(
               'assets/images/login/google_logo.svg',
