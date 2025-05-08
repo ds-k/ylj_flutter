@@ -1,22 +1,32 @@
 import 'package:dio/dio.dart';
 import '../models/user_model.dart';
 
-class UserRepository {
+abstract class IUserRepository {
+  Future<UserModel> getUserProfile();
+  Future<UserModel> updateUserProfile(UserModel user);
+}
+
+class UserRepository implements IUserRepository {
   final Dio _dio;
-  final String _baseUrl = 'YOUR_NEST_SERVER_URL';
+  final String _baseUrl;
 
-  UserRepository() : _dio = Dio();
+  UserRepository({
+    Dio? dio,
+    String? baseUrl,
+  })  : _dio = dio ?? Dio(),
+        _baseUrl = baseUrl ?? 'YOUR_NEST_SERVER_URL';
 
+  @override
   Future<UserModel> getUserProfile() async {
     try {
       final response = await _dio.get('$_baseUrl/users/profile');
 
       return UserModel(
         id: response.data['id'],
-        email: response.data['email'],
         name: response.data['name'],
         profileImage: response.data['profileImage'],
-        phoneNumber: response.data['phoneNumber'],
+        abilities: response.data['abilities'],
+        interests: response.data['interests'],
         createdAt: DateTime.parse(response.data['createdAt']),
         updatedAt: DateTime.parse(response.data['updatedAt']),
       );
@@ -25,23 +35,23 @@ class UserRepository {
     }
   }
 
+  @override
   Future<UserModel> updateUserProfile(UserModel user) async {
     try {
       final response = await _dio.put(
         '$_baseUrl/users/profile',
         data: {
           'name': user.name,
-          'phoneNumber': user.phoneNumber,
           'profileImage': user.profileImage,
         },
       );
 
       return UserModel(
         id: response.data['id'],
-        email: response.data['email'],
         name: response.data['name'],
         profileImage: response.data['profileImage'],
-        phoneNumber: response.data['phoneNumber'],
+        abilities: response.data['abilities'],
+        interests: response.data['interests'],
         createdAt: DateTime.parse(response.data['createdAt']),
         updatedAt: DateTime.parse(response.data['updatedAt']),
       );

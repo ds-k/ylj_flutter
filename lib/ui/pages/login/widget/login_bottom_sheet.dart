@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../ui/viewmodels/auth_viewmodel.dart';
 import '../../../../constant/colors.dart';
+import '../../../pages/home/home_page.dart';
 import 'privacy_policy_page.dart';
 
 class LoginBottomSheet extends ConsumerWidget {
@@ -66,7 +67,10 @@ class LoginBottomSheet extends ConsumerWidget {
                     .read(authViewModelProvider.notifier)
                     .signInWithGoogle();
                 if (context.mounted) {
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
                 }
               } catch (error) {
                 if (context.mounted) {
@@ -94,8 +98,27 @@ class LoginBottomSheet extends ConsumerWidget {
           ),
           const SizedBox(height: 10),
           ElevatedButton.icon(
-            onPressed: () {
-              // TODO: 애플 로그인 구현
+            onPressed: () async {
+              try {
+                await ref
+                    .read(authViewModelProvider.notifier)
+                    .signInWithApple();
+                if (context.mounted) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                }
+              } catch (error) {
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(getErrorMessage(error)),
+                      duration: const Duration(seconds: 3),
+                    ),
+                  );
+                }
+              }
             },
             icon: SvgPicture.asset(
               'assets/images/login/apple_logo.svg',

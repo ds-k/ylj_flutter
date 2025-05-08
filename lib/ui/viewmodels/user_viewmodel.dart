@@ -2,12 +2,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/models/user_model.dart';
 import '../../data/repositories/user_repository.dart';
 
-class UserViewModel extends StateNotifier<UserModel> {
-  final UserRepository _userRepository;
+class UserViewModel extends Notifier<UserModel> {
+  final IUserRepository _userRepository;
 
-  UserViewModel()
-      : _userRepository = UserRepository(),
-        super(UserModel());
+  UserViewModel({
+    IUserRepository? userRepository,
+  }) : _userRepository = userRepository ?? UserRepository();
+
+  @override
+  UserModel build() {
+    return UserModel();
+  }
 
   Future<void> getUserProfile() async {
     try {
@@ -28,7 +33,6 @@ class UserViewModel extends StateNotifier<UserModel> {
   }
 }
 
-final userViewModelProvider =
-    StateNotifierProvider<UserViewModel, UserModel>((ref) {
+final userViewModelProvider = NotifierProvider<UserViewModel, UserModel>(() {
   return UserViewModel();
 });

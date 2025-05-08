@@ -1,37 +1,37 @@
 class UserModel {
   final String? id;
-  final String? email;
   final String? name;
   final String? profileImage;
-  final String? phoneNumber;
+  final List? abilities;
+  final List? interests;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
   UserModel({
     this.id,
-    this.email,
     this.name,
     this.profileImage,
-    this.phoneNumber,
+    this.abilities,
+    this.interests,
     this.createdAt,
     this.updatedAt,
   });
 
   UserModel copyWith({
     String? id,
-    String? email,
     String? name,
     String? profileImage,
-    String? phoneNumber,
+    List? abilities,
+    List? interests,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
     return UserModel(
       id: id ?? this.id,
-      email: email ?? this.email,
       name: name ?? this.name,
       profileImage: profileImage ?? this.profileImage,
-      phoneNumber: phoneNumber ?? this.phoneNumber,
+      abilities: abilities ?? this.abilities,
+      interests: interests ?? this.interests,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );

@@ -1,12 +1,22 @@
 import 'package:dio/dio.dart';
 import '../models/auth_model.dart';
 
-class AuthRepository {
+abstract class IAuthRepository {
+  Future<AuthModel> socialLogin(String token, String provider);
+  Future<AuthModel> refreshToken(String refreshToken);
+}
+
+class AuthRepository implements IAuthRepository {
   final Dio _dio;
-  final String _baseUrl = 'YOUR_NEST_SERVER_URL';
+  final String _baseUrl;
 
-  AuthRepository() : _dio = Dio();
+  AuthRepository({
+    Dio? dio,
+    String? baseUrl,
+  })  : _dio = dio ?? Dio(),
+        _baseUrl = baseUrl ?? 'YOUR_NEST_SERVER_URL';
 
+  @override
   Future<AuthModel> socialLogin(String token, String provider) async {
     try {
       final response = await _dio.post(
@@ -21,14 +31,13 @@ class AuthRepository {
         accessToken: response.data['accessToken'],
         refreshToken: response.data['refreshToken'],
         provider: provider,
-        isAuthenticated: true,
-        tokenExpiry: DateTime.parse(response.data['expiresAt']),
       );
     } catch (e) {
       throw Exception('소셜 로그인 실패: $e');
     }
   }
 
+  @override
   Future<AuthModel> refreshToken(String refreshToken) async {
     try {
       final response = await _dio.post(
@@ -41,8 +50,6 @@ class AuthRepository {
       return AuthModel(
         accessToken: response.data['accessToken'],
         refreshToken: response.data['refreshToken'],
-        isAuthenticated: true,
-        tokenExpiry: DateTime.parse(response.data['expiresAt']),
       );
     } catch (e) {
       throw Exception('토큰 갱신 실패: $e');
