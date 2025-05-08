@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ylj_flutter/constant/colors.dart';
+import 'package:pomato_flutter/constant/colors.dart';
 
 class PrivacyPolicyPage extends StatelessWidget {
   const PrivacyPolicyPage({super.key});

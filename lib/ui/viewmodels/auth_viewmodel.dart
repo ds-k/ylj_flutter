@@ -35,6 +35,7 @@ class AuthViewModel extends Notifier<AuthModel> {
           await googleUser.authentication;
       final String? idToken = googleAuth.idToken;
 
+      print(idToken);
       if (idToken == null) {
         throw Exception('ID Token을 가져오는데 실패했습니다.');
       }

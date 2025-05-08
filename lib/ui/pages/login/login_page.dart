@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ylj_flutter/constant/colors.dart';
-import 'package:ylj_flutter/ui/pages/layout/layout_page.dart';
-import 'package:ylj_flutter/ui/pages/login/widget/login_bottom_sheet.dart';
+import 'package:pomato_flutter/constant/colors.dart';
+import 'package:pomato_flutter/ui/pages/layout/layout_page.dart';
+import 'package:pomato_flutter/ui/pages/login/widget/login_bottom_sheet.dart';
 
 class CarouselItem {
   final String imagePath;
