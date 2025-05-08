@@ -1,4 +1,4 @@
-package com.yeollinjib.myapp
+package me.pomato.app
 
 import io.flutter.embedding.android.FlutterActivity
 
