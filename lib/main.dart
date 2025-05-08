@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:ylj_flutter/presentation/ui/layout/layout_page.dart';
-import 'package:ylj_flutter/presentation/ui/login/login_page.dart';
+import 'package:ylj_flutter/ui/pages/layout/layout_page.dart';
+import 'package:ylj_flutter/ui/pages/login/login_page.dart';
+import 'package:ylj_flutter/ui/pages/splash/splash_page.dart';
 import 'constant/colors.dart';
 
 void main() {
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
           selectionHandleColor: AppColors.black,
         ),
       ),
-      home: const LayoutPage(),
+      home: const SplashPage(),
     );
   }
 }
